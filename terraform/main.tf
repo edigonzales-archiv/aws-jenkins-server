@@ -50,7 +50,6 @@ resource "aws_instance" "jenkins-server" {
               mkdir -p /home/ec2-user/jenkins_home
               chown -R ec2-user:ec2-user /home/ec2-user/jenkins_home
               chown -R 1000:1000 /home/ec2-user/jenkins_home
-              # git before or after?
               git clone https://edigonzales:${var.git_pwd}@bitbucket.org/edigonzales/aws-jenkins-server-config.git /home/ec2-user/jenkins_home
               sudo -u ec2-user docker run -dit --restart unless-stopped -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v /home/ec2-user/jenkins_home:/var/jenkins_home sogis/jenkins-docker 
               chown -R 1000:1000 /home/ec2-user/jenkins_home
